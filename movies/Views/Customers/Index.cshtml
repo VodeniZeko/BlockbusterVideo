@@ -1,0 +1,35 @@
+﻿@model IEnumerable<movies.Models.Customer>;
+
+@{
+    ViewData["Title"] = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Customers</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Customers</th>
+            <th>Discount Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td><a asp-controller="Customers" asp-action="Details" asp-route-id="@customer.Id">@customer.Name</a></td>
+
+                @if (customer.MembershipType != null)
+                {
+                    <td>@customer.MembershipType.DiscountRate</td>
+                }
+                else
+                {
+                    <td>n/a</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
